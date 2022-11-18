@@ -3,6 +3,7 @@ const buttonEl = document.querySelector('button');
 const timerEl = document.querySelector('span');
 
 let timer = 0;
+let regexp = /\d/g;
 // Напишите реализацию createTimerAnimator
 // который будет анимировать timerEl
 const createTimerAnimator = () => {
@@ -23,16 +24,15 @@ function parseTime(seconds){
   let parsedHours = Math.floor(seconds/60/60);
   let parsedMinutes = Math.floor(seconds/60)%60;
   let parsedSeconds = seconds%60;
-  let parsedTime = "";
-  parsedTime = parsedHours +":"+parsedMinutes+":"+parsedSeconds;
+  let parsedTime = parsedHours +":"+parsedMinutes+":"+parsedSeconds;
   return parsedTime
 }
 
 const animateTimer = createTimerAnimator();
 
 inputEl.addEventListener('input', () => {
-  // Очистите input так, чтобы в значении
-  // оставались только числа
+  let validatedInput = inputEl.value.match(regexp) || [];
+  inputEl.value = validatedInput.join("");
 });
 
 buttonEl.addEventListener('click', () => {
