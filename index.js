@@ -24,8 +24,15 @@ function parseTime(seconds){
   let parsedHours = Math.floor(seconds/60/60);
   let parsedMinutes = Math.floor(seconds/60)%60;
   let parsedSeconds = seconds%60;
-  let parsedTime = parsedHours +":"+parsedMinutes+":"+parsedSeconds;
+  let parsedTime = parseTimeUnit(parsedHours) +":"+parseTimeUnit(parsedMinutes)+":"+parseTimeUnit(parsedSeconds);
   return parsedTime
+}
+
+function parseTimeUnit(timeUnit){
+  if (timeUnit<10){
+    return "0"+timeUnit;
+  }
+  return timeUnit;
 }
 
 const animateTimer = createTimerAnimator();
